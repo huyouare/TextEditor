@@ -5,6 +5,7 @@ var documents = Database.load();
 var filelist = document.getElementById("availableFiles");
 for(var i = 0; i < documents.length; i++){
 	var newItem = document.createElement("li");
+  newItem.className = 'doc' + i;
 	newItem.innerHTML = documents[i].name + "<button style= 'margin-left:20px; height:20px;' type='button' class='close' id='" + myDoc.name + "' onClick='getDoc(" + JSON.stringify(documents[i]) + ")'><span class='glyphicon glyphicon-open'></span></button>" + "<button style= 'height:20px' type='button' class='close' data-dismiss='alert' onClick='Database.remove(" + JSON.stringify(documents[i]) + ")'><span class='glyphicon glyphicon-trash'></span></button>";
 	filelist.appendChild(newItem);
 }
@@ -30,7 +31,7 @@ function createNewDoc(){
 	if(!exists){
 		console.log(myDoc);
 		Database.save(myDoc);
-
+    newItem.className = 'doc' + documents.length;
 		filelist.appendChild(newItem);
 	}
 
@@ -40,8 +41,16 @@ function createNewDoc(){
 		console.log(myDoc);
 		Database.save(myDoc);
 
-		filelist.appendChild(newItem);
+    console.log('doc' + index);
+    var old = document.getElementsByClassName('doc' + index)[0];
+    console.log("OLD: " + old.innerHTML);
+    old.parentNode.removeChild(old);
+
+    newItem.className = 'doc' + index;
+    filelist.appendChild(newItem);
 	}
+
+  documents = Database.load();
 }
 
 function getDoc(myDoc){

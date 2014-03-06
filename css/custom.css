@@ -26,3 +26,6 @@ footer{
 	margin-top:670px;
 	text-align: center;
 }
+#availableFiles li{
+  height:30px;
+}

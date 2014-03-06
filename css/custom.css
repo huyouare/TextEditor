@@ -22,9 +22,12 @@
 	height: 40px;
 }
 
-footer{
-	margin-top:670px;
-	text-align: center;
+
+
+#footer p{
+	padding-top: 12px;
+}
+
 }
 #availableFiles li{
   height:30px;

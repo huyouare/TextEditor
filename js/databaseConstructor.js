@@ -29,11 +29,12 @@ var Database = {
 		this.metanames = JSON.parse(localStorage["metanames"]);
 		this.nextId = JSON.parse(localStorage["nextId"]);
 	},
-	load: function(myDoc){
+	load: function(){
 		var documents = [];
 		console.log(this.metanames);
 		for(var i = 0; i < this.metanames.length; i++){
 			console.log(this.metanames[i]);
+			console.log(localStorage[this.metanames[i]]);
 			documents.push(JSON.parse(localStorage[this.metanames[i]]));
 		}
 		return documents;
@@ -51,13 +52,17 @@ var Database = {
 		if(typeof myDoc === 'string'){
 			console.log("Yep");
 		}
+		console.log(typeof myDoc);
+		console.log(myDoc);
 		for(var i = 0; i < this.metanames.length; i++){
 			if(JSON.parse(localStorage[this.metanames[i]]).name == myDoc.name){
 				localStorage.removeItem(JSON.stringify(this.metanames[i]));
-				this.metanames.splice(i,1);	
+				this.metanames.splice(i,1);
+				documents.splice(i,1);
 				localStorage["metanames"] = JSON.stringify(this.metanames);
 			}
 		}
+
 	}
 };
 

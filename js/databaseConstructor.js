@@ -1,3 +1,5 @@
+'use strict';
+
 function Doc(content, name){
 	this.content = content;
 	this.name = name;
@@ -30,7 +32,9 @@ var Database = {
 	},
 	load: function(myDoc){
 		var documents = [];
+		console.log(this.metanames);
 		for(var i = 0; i < this.metanames.length; i++){
+			console.log(this.metanames[i]);
 			documents.push(JSON.parse(localStorage[this.metanames[i]]));
 		}
 		return documents;
@@ -44,7 +48,7 @@ var Database = {
 	},
 	remove: function(myDoc) {
 		for(var i = 0; i < this.metanames.length; i++){
-			if(localStorage[JSON.stringify(this.metanames[i])] == myDoc){
+			if(JSON.parse(localStorage[this.metanames[i]]).name == myDoc.name){
 				localStorage.removeItem(JSON.stringify(this.metanames[i]));
 				delete this.metanames[i];	
 				localStorage["metanames"] = JSON.stringify(this.metanames);

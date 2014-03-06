@@ -48,8 +48,8 @@ var Database = {
 	},
 
 	remove: function(myDoc) {
-		if(typeof a_string === 'string'){
-			myDoc = JSON.parse(myDoc);
+		if(typeof myDoc === 'string'){
+			console.log("Yep");
 		}
 		for(var i = 0; i < this.metanames.length; i++){
 			if(JSON.parse(localStorage[this.metanames[i]]).name == myDoc.name){

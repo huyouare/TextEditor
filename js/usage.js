@@ -14,6 +14,7 @@ function createNewDoc(){
 	myDoc.content = document.getElementById('editor').value;
 	console.log(myDoc);
 	Database.save(myDoc);
+
 	var newItem = document.createElement("li");
 	newItem.innerHTML = myDoc.name;
 	filelist.appendChild(newItem);

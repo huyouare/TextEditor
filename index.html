@@ -32,13 +32,11 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Options<b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="#">Create</a></li>
+                <li><a onclick="createNewDoc()" href="#">Save</a></li>
                 <li class="divider"></li>
                 <li><a href="#">Delete</a></li>
                 <li class="divider"></li>
                 <li><a href="#">Load</a></li>
-                <li class="divider"></li>
-                <li><a href="#">Save</a></li>
               </ul>
             </li>
           </ul>
@@ -58,10 +56,7 @@
 
     <div class="col-sm-3 col-md-2 sidebar">
       <h3> Files </h3>
-          <ul class="nav nav-sidebar">
-            <li class="active"><a href="#">JesseHu.txt</a></li>
-            <li><a href="#">SamGinsburg.txt</a></li>
-            <li><a href="#">JoshuaMiller.txt</a></li>
+          <ul id = "availableFiles" class="nav nav-sidebar">
           </ul>
     </div>
 
@@ -72,7 +67,8 @@
     <div class="col-sm-9 col-md-10">
       <h3>Text Editor</h3>
       <p>Enter your text here:</p>
-      <textarea id = "editor" class="form-control"></textarea>
+      <textarea id = "name" class="form-control">Name</textarea>
+      <textarea id = "editor" class="form-control">Content</textarea>
       <button class="btn btn-default" type="button">Go!</button>
     </div>
 
@@ -83,5 +79,7 @@
 
     <script src="http://code.jquery.com/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/databaseConstructor.js"></script>
+    <script src="js/usage.js"></script>
   </body>
 </html>

@@ -16,23 +16,38 @@ var metanames = [];
 
 var Database = {
 	init: function() {
-		if(!supportsLocalStorage()){ return false; }
+		if(!supportsLocalStorage()){
+		    return false; 
+		}
+		if(!localStorage["metanames"]){
+			localStorage["metanames"] = JSON.stringify(metanames);
+		}
+	    if(!localStorage["nextId"]){
+			localStorage["nextId"] = JSON.stringify(0);
+		}
 		this.metanames = JSON.parse(localStorage["metanames"]);
 		this.nextId = JSON.parse(localStorage["nextId"]);
 	},
-	make_id: function() {},
+	load: function(myDoc){
+		var documents = [];
+		for(var i = 0; i < this.metanames.length; i++){
+			documents.push(JSON.parse(localStorage[this.metanames[i]]));
+		}
+		return documents;
+	},
 	save: function(myDoc) {
 		this.metanames.push(this.nextId);
 		localStorage["metanames"] = JSON.stringify(this.metanames);
-		localStorage[JSON.stringify(nextId)] = JSON.stringify(myDoc);
+		localStorage[JSON.stringify(this.nextId)] = JSON.stringify(myDoc);
 		this.nextId++;
 		localStorage["nextId"] = JSON.stringify(this.nextId);
 	},
 	remove: function(myDoc) {
-		for(var i = 0; i < metanames.length; i++){
-			if(localStorage[JSON.stringify(i)] == myDoc){
-				localStorage.removeItem(JSON.stringify(i));
-				
+		for(var i = 0; i < this.metanames.length; i++){
+			if(localStorage[JSON.stringify(this.metanames[i])] == myDoc){
+				localStorage.removeItem(JSON.stringify(this.metanames[i]));
+				delete this.metanames[i];	
+				localStorage["metanames"] = JSON.stringify(this.metanames);
 			}
 		}
 	}

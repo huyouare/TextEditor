@@ -16,6 +16,6 @@ function createNewDoc(){
 	Database.save(myDoc);
 
 	var newItem = document.createElement("li");
-	newItem.innerHTML = myDoc.name;
+	newItem.innerHTML = myDoc.name + "<button type='button' class='close' data-dismiss='alert' onClick='delete(" + JSON.stringify(myDoc) + ")'>x</button>";
 	filelist.appendChild(newItem);
 }

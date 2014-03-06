@@ -18,12 +18,12 @@ var metanames = [];
 var Database = {
 	init: function() {
 		if(!supportsLocalStorage()){
-		    return false; 
+			return false;
 		}
 		if(!localStorage["metanames"]){
 			localStorage["metanames"] = JSON.stringify(metanames);
 		}
-	    if(!localStorage["nextId"]){
+		if(!localStorage["nextId"]){
 			localStorage["nextId"] = JSON.stringify(0);
 		}
 		this.metanames = JSON.parse(localStorage["metanames"]);
@@ -48,6 +48,9 @@ var Database = {
 	},
 
 	remove: function(myDoc) {
+		if(typeof a_string === 'string'){
+			myDoc = JSON.parse(myDoc);
+		}
 		for(var i = 0; i < this.metanames.length; i++){
 			if(JSON.parse(localStorage[this.metanames[i]]).name == myDoc.name){
 				localStorage.removeItem(JSON.stringify(this.metanames[i]));

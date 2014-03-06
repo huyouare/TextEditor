@@ -5,7 +5,6 @@ function Doc(content, name){
 	this.name = name;
 }
 
-var myDoc = new Doc("bitches", "money");
 function supportsLocalStorage(){
 	try{
 		return 'localStorage' in window && window['localStorage'] !== null;
@@ -39,6 +38,7 @@ var Database = {
 		}
 		return documents;
 	},
+
 	save: function(myDoc) {
 		this.metanames.push(this.nextId);
 		localStorage["metanames"] = JSON.stringify(this.metanames);
@@ -46,6 +46,7 @@ var Database = {
 		this.nextId++;
 		localStorage["nextId"] = JSON.stringify(this.nextId);
 	},
+
 	remove: function(myDoc) {
 		if(typeof a_string === 'string'){
 			myDoc = JSON.parse(myDoc);
@@ -53,7 +54,7 @@ var Database = {
 		for(var i = 0; i < this.metanames.length; i++){
 			if(JSON.parse(localStorage[this.metanames[i]]).name == myDoc.name){
 				localStorage.removeItem(JSON.stringify(this.metanames[i]));
-				delete this.metanames[i];	
+				this.metanames.splice(i,1);	
 				localStorage["metanames"] = JSON.stringify(this.metanames);
 			}
 		}

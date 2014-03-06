@@ -23,4 +23,7 @@ function createNewDoc(){
 function getDoc(myDoc){
 	document.getElementById('editor').value = myDoc.content;
 	document.getElementById('name').value = myDoc.name;
+		var newItem = document.createElement("li");
+		newItem.innerHTML = myDoc.name + "<button style= 'padding-left:20px; height:20px;' type='button' class='close' data-dismiss='alert' onClick='getDoc(" + JSON.stringify(myDoc) + ")'>L</button>" + "<button style= 'height:20px' type='button' class='close' data-dismiss='alert' onClick='Database.remove(" + JSON.stringify(myDoc) + ")'>X</button>";
+		filelist.appendChild(newItem);
 }
